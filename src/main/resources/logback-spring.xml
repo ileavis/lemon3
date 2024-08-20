@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <property name="DEFAULT_LOG_PATTERN"
+              value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} [%X{traceId}] %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+    <!-- 从Spring中获取配置-->
+    <springProperty scope="context" name="loggingLevelRoot" source="logging.level.root"/>
+    <springProperty scope="context" name="loggingLevelMyBatis" source="logging.level.mybatis" defaultValue="INFO"/>
+    <springProperty scope="context" name="springApplicationName" source="spring.application.name"/>
+    <springProperty scope="context" name="logHome" source="log.home" defaultValue="./logs"/>
+    <springProperty scope="context" name="logMaxFileSize" source="log.rolling-policy.max-file-size" defaultValue="1GB"/>
+    <springProperty scope="context" name="logMaxHistory" source="log.rolling-policy.max-history" defaultValue="3"/>
+    <springProperty scope="context" name="logTotalSizeCap" source="log.rolling-policy.total-size-cap" defaultValue="10GB"/>
+
+    <!-- 定义日志输出根目录 -->
+    <property name="LOG_HOME" value="${logHome}"/>
+    <property name="LOG_MAX_FILE_SIZE" value="${logMaxFileSize}"/>
+    <property name="LOG_MAX_HISTORY" value="${logMaxHistory}"/>
+    <property name="LOG_TOTAL_SIZE_CAP" value="${logTotalSizeCap}"/>
+
+    <!-- 将日志打印到标准输出 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned the type
+         ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <charset>UTF-8</charset>
+            <!--            <pattern>%d{hh:mm:ss.sss} [%thread] %-5level %logger{36} - %msg%n</pattern>-->
+            <pattern>${DEFAULT_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 将日志输出到文件（不含日志切割） -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/${springApplicationName}.log</file>
+        <append>true</append>
+        <!-- set immediateFlush to false for much higher logging throughput -->
+        <immediateFlush>true</immediateFlush>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>${DEFAULT_LOG_PATTERN}</pattern>
+        </encoder>
+        <!--文件滚动模式-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--定义文件滚动时的文件名的格式-->
+            <fileNamePattern>${LOG_HOME}/${springApplicationName}.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <maxFileSize>${LOG_MAX_FILE_SIZE}</maxFileSize>
+            <maxHistory>${LOG_MAX_HISTORY}</maxHistory>
+            <totalSizeCap>${LOG_TOTAL_SIZE_CAP}</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <!--开启mybatis sql日志-->
+    <logger name="com.leavis.lemon3.mapper" level="${loggingLevelMyBatis}" additivity="true"/>
+
+    <!-- 根日志同时采用两项日志配置，日志会被同时打印到两个地方 -->
+    <root level="${loggingLevelRoot}">
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

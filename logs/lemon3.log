@@ -1,0 +1,115 @@
+[2m2024-08-20 17:17:44.100[0;39m [32m INFO[0;39m [35m50598[0;39m [2m---[0;39m [2m[           main][0;39m [] [36mcom.leavis.lemon3.Lemon3Application     [0;39m [2m:[0;39m Starting Lemon3Application using Java 21.0.1 with PID 50598 (/Users/paynejlli/CloudDisk/IdeaProjects/lemon3/target/classes started by paynejlli in /Users/paynejlli/CloudDisk/IdeaProjects/lemon3)
+[2m2024-08-20 17:17:44.103[0;39m [32m INFO[0;39m [35m50598[0;39m [2m---[0;39m [2m[           main][0;39m [] [36mcom.leavis.lemon3.Lemon3Application     [0;39m [2m:[0;39m No active profile set, falling back to 1 default profile: "default"
+[2m2024-08-20 17:17:45.687[0;39m [33m WARN[0;39m [35m50598[0;39m [2m---[0;39m [2m[           main][0;39m [] [36mConfigServletWebServerApplicationContext[0;39m [2m:[0;39m Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'userMapper' defined in file [/Users/paynejlli/CloudDisk/IdeaProjects/lemon3/target/classes/com/leavis/lemon3/mapper/UserMapper.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+[2m2024-08-20 17:17:45.706[0;39m [32m INFO[0;39m [35m50598[0;39m [2m---[0;39m [2m[           main][0;39m [] [36m.s.b.a.l.ConditionEvaluationReportLogger[0;39m [2m:[0;39m 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+[2m2024-08-20 17:17:45.720[0;39m [31mERROR[0;39m [35m50598[0;39m [2m---[0;39m [2m[           main][0;39m [] [36mo.s.boot.SpringApplication              [0;39m [2m:[0;39m Application run failed
+
+org.springframework.beans.factory.BeanDefinitionStoreException: Invalid bean definition with name 'userMapper' defined in file [/Users/paynejlli/CloudDisk/IdeaProjects/lemon3/target/classes/com/leavis/lemon3/mapper/UserMapper.class]: Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryBean(AbstractAutowireCapableBeanFactory.java:857)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getType(AbstractBeanFactory.java:743)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAnnotationOnBean(DefaultListableBeanFactory.java:735)
+	at org.springframework.boot.sql.init.dependency.AnnotationDependsOnDatabaseInitializationDetector.detect(AnnotationDependsOnDatabaseInitializationDetector.java:36)
+	at org.springframework.boot.sql.init.dependency.DatabaseInitializationDependencyConfigurer$DependsOnDatabaseInitializationPostProcessor.detectDependsOnInitializationBeanNames(DatabaseInitializationDependencyConfigurer.java:152)
+	at org.springframework.boot.sql.init.dependency.DatabaseInitializationDependencyConfigurer$DependsOnDatabaseInitializationPostProcessor.postProcessBeanFactory(DatabaseInitializationDependencyConfigurer.java:115)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:363)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:197)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:789)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:607)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at com.leavis.lemon3.Lemon3Application.main(Lemon3Application.java:14)
+
+[2m2024-08-20 17:20:48.532[0;39m [32m INFO[0;39m [35m51475[0;39m [2m---[0;39m [2m[           main][0;39m [] [36mcom.leavis.lemon3.Lemon3Application     [0;39m [2m:[0;39m Starting Lemon3Application using Java 21.0.1 with PID 51475 (/Users/paynejlli/CloudDisk/IdeaProjects/lemon3/target/classes started by paynejlli in /Users/paynejlli/CloudDisk/IdeaProjects/lemon3)
+[2m2024-08-20 17:20:48.535[0;39m [32m INFO[0;39m [35m51475[0;39m [2m---[0;39m [2m[           main][0;39m [] [36mcom.leavis.lemon3.Lemon3Application     [0;39m [2m:[0;39m No active profile set, falling back to 1 default profile: "default"
+[2m2024-08-20 17:20:50.379[0;39m [32m INFO[0;39m [35m51475[0;39m [2m---[0;39m [2m[           main][0;39m [] [36mo.s.b.w.embedded.tomcat.TomcatWebServer [0;39m [2m:[0;39m Tomcat initialized with port 8080 (http)
+[2m2024-08-20 17:20:50.390[0;39m [32m INFO[0;39m [35m51475[0;39m [2m---[0;39m [2m[           main][0;39m [] [36mo.apache.catalina.core.StandardService  [0;39m [2m:[0;39m Starting service [Tomcat]
+[2m2024-08-20 17:20:50.391[0;39m [32m INFO[0;39m [35m51475[0;39m [2m---[0;39m [2m[           main][0;39m [] [36mo.apache.catalina.core.StandardEngine   [0;39m [2m:[0;39m Starting Servlet engine: [Apache Tomcat/10.1.26]
+[2m2024-08-20 17:20:50.517[0;39m [32m INFO[0;39m [35m51475[0;39m [2m---[0;39m [2m[           main][0;39m [] [36mo.a.c.c.C.[Tomcat].[localhost].[/]      [0;39m [2m:[0;39m Initializing Spring embedded WebApplicationContext
+[2m2024-08-20 17:20:50.525[0;39m [32m INFO[0;39m [35m51475[0;39m [2m---[0;39m [2m[           main][0;39m [] [36mw.s.c.ServletWebServerApplicationContext[0;39m [2m:[0;39m Root WebApplicationContext: initialization completed in 1930 ms
+[2m2024-08-20 17:20:51.907[0;39m [32m INFO[0;39m [35m51475[0;39m [2m---[0;39m [2m[           main][0;39m [] [36mo.s.b.a.e.web.EndpointLinksResolver     [0;39m [2m:[0;39m Exposing 1 endpoint beneath base path '/actuator'
+[2m2024-08-20 17:20:51.984[0;39m [32m INFO[0;39m [35m51475[0;39m [2m---[0;39m [2m[           main][0;39m [] [36mo.s.b.w.embedded.tomcat.TomcatWebServer [0;39m [2m:[0;39m Tomcat started on port 8080 (http) with context path '/'
+[2m2024-08-20 17:20:52.004[0;39m [32m INFO[0;39m [35m51475[0;39m [2m---[0;39m [2m[           main][0;39m [] [36mcom.leavis.lemon3.Lemon3Application     [0;39m [2m:[0;39m Started Lemon3Application in 4.194 seconds (process running for 5.039)
+[2m2024-08-20 17:20:52.641[0;39m [32m INFO[0;39m [35m51475[0;39m [2m---[0;39m [2m[on(2)-127.0.0.1][0;39m [] [36mo.a.c.c.C.[Tomcat].[localhost].[/]      [0;39m [2m:[0;39m Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2m2024-08-20 17:20:52.644[0;39m [32m INFO[0;39m [35m51475[0;39m [2m---[0;39m [2m[on(2)-127.0.0.1][0;39m [] [36mo.s.web.servlet.DispatcherServlet       [0;39m [2m:[0;39m Initializing Servlet 'dispatcherServlet'
+[2m2024-08-20 17:20:52.647[0;39m [32m INFO[0;39m [35m51475[0;39m [2m---[0;39m [2m[on(2)-127.0.0.1][0;39m [] [36mo.s.web.servlet.DispatcherServlet       [0;39m [2m:[0;39m Completed initialization in 2 ms
+[2m2024-08-20 17:20:52.681[0;39m [32m INFO[0;39m [35m51475[0;39m [2m---[0;39m [2m[on(3)-127.0.0.1][0;39m [] [36mcom.alibaba.druid.pool.DruidDataSource  [0;39m [2m:[0;39m {dataSource-1} inited
+[2m2024-08-20 17:20:58.724[0;39m [32m INFO[0;39m [35m51475[0;39m [2m---[0;39m [2m[nio-8080-exec-1][0;39m [] [36mcom.leavis.lemon3.filter.WebLogFilter   [0;39m [2m:[0;39m HTTP GET /swagger-ui/index.html {request params: {},request body: ,client ip: 0:0:0:0:0:0:0:1,response body: ,cost: 33ms}
+[2m2024-08-20 17:20:58.766[0;39m [32m INFO[0;39m [35m51475[0;39m [2m---[0;39m [2m[nio-8080-exec-2][0;39m [] [36mcom.leavis.lemon3.filter.WebLogFilter   [0;39m [2m:[0;39m HTTP GET /swagger-ui/swagger-initializer.js {request params: {},request body: ,client ip: 0:0:0:0:0:0:0:1,response body: window.onload = function() {
+  //<editor-fold desc="Changeable Configuration Block">
+
+  // the following lines will be replaced by docker/configurator, when it runs in a docker-container
+  window.ui = SwaggerUIBundle({
+    url: "https://petstore.swagger.io/v2/swagger.json",
+    dom_id: '#swagger-ui',
+    deepLinking: true,
+    presets: [
+      SwaggerUIBundle.presets.apis,
+      SwaggerUIStandalonePreset
+    ],
+    plugins: [
+      SwaggerUIBundle.plugins.DownloadUrl
+    ],
+    layout: "StandaloneLayout" ,
+
+  "configUrl" : "/v3/api-docs/swagger-config",
+  "validatorUrl" : ""
+
+  });
+
+  //</editor-fold>
+};
+,cost: 18ms}
+[2m2024-08-20 17:20:58.853[0;39m [32m INFO[0;39m [35m51475[0;39m [2m---[0;39m [2m[nio-8080-exec-3][0;39m [] [36mcom.leavis.lemon3.filter.WebLogFilter   [0;39m [2m:[0;39m HTTP GET /v3/api-docs/swagger-config {request params: {},request body: ,client ip: 0:0:0:0:0:0:0:1,response body: {"configUrl":"/v3/api-docs/swagger-config","oauth2RedirectUrl":"http://localhost:8080/swagger-ui/oauth2-redirect.html","url":"/v3/api-docs","validatorUrl":""},cost: 30ms}
+[2m2024-08-20 17:20:59.277[0;39m [32m INFO[0;39m [35m51475[0;39m [2m---[0;39m [2m[nio-8080-exec-4][0;39m [77c31c3f748742d48176d3a5b81a152c] [36mo.springdoc.api.AbstractOpenApiResource [0;39m [2m:[0;39m Init duration for springdoc-openapi is: 394 ms
+[2m2024-08-20 17:20:59.303[0;39m [32m INFO[0;39m [35m51475[0;39m [2m---[0;39m [2m[nio-8080-exec-4][0;39m [] [36mcom.leavis.lemon3.filter.WebLogFilter   [0;39m [2m:[0;39m HTTP GET /v3/api-docs {request params: {},request body: ,client ip: 0:0:0:0:0:0:0:1,response body: {"openapi":"3.0.1","info":{"title":"OpenAPI definition","version":"v0"},"servers":[{"url":"http://localhost:8080","description":"Generated server url"}],"paths":{"/user/page":{"get":{"tags":["用户相关接口"],"summary":"获取用户列表","description":"获取用户列表,输入分页参数，返回总记录数和详细记录","operationId":"getUserPage","parameters":[{"name":"pageParamDTO","in":"query","required":true,"schema":{"$ref":"#/components/schemas/PageParamDTO"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/ResultListUserInfoDTO"}}}}}}},"/amap/weather":{"get":{"tags":["高德相关接口"],"summary":"获取天气信息","description":"入参示例【北京】：110000","operationId":"getWeatherInfo","parameters":[{"name":"cityCode","in":"query","required":true,"schema":{"type":"string"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"$ref":"#/components/schemas/ResultString"}}}}}}}},"components":{"schemas":{"ResultString":{"type":"object","properties":{"traceId":{"type":"string","description":"traceId"},"code":{"type":"string","description":"错误码"},"msg":{"type":"string","description":"错误信息"},"data":{"type":"string","description":"业务数据"},"total":{"type":"integer","description":"分页数据时，返回总条数","format":"int64"}},"description":"结果反回通用类"},"PageParamDTO":{"type":"object","properties":{"page":{"minimum":1,"type":"integer","description":"页码","format":"int32"},"pageSize":{"minimum":1,"type":"integer","description":"每页返回条数","format":"int32"}},"description":"分页请求信息"},"ResultListUserInfoDTO":{"type":"object","properties":{"traceId":{"type":"string","description":"traceId"},"code":{"type":"string","description":"错误码"},"msg":{"type":"string","description":"错误信息"},"data":{"type":"array","description":"业务数据","items":{"$ref":"#/components/schemas/UserInfoDTO"}},"total":{"type":"integer","description":"分页数据时，返回总条数","format":"int64"}},"description":"结果反回通用类"},"UserInfoDTO":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"name":{"type":"string"},"age":{"type":"integer","format":"int32"},"email":{"type":"string"}},"description":"业务数据"}}}},cost: 433ms}
+[2m2024-08-20 17:21:08.073[0;39m [32mDEBUG[0;39m [35m51475[0;39m [2m---[0;39m [2m[nio-8080-exec-5][0;39m [a45734a78f1b4949ab9b1fcceaecb10b] [36mc.l.l.m.UserMapper.selectList_mpCount   [0;39m [2m:[0;39m ==>  Preparing: SELECT COUNT(*) AS total FROM t_user
+[2m2024-08-20 17:21:08.093[0;39m [32mDEBUG[0;39m [35m51475[0;39m [2m---[0;39m [2m[nio-8080-exec-5][0;39m [a45734a78f1b4949ab9b1fcceaecb10b] [36mc.l.l.m.UserMapper.selectList_mpCount   [0;39m [2m:[0;39m ==> Parameters: 
+[2m2024-08-20 17:21:08.135[0;39m [32mDEBUG[0;39m [35m51475[0;39m [2m---[0;39m [2m[nio-8080-exec-5][0;39m [a45734a78f1b4949ab9b1fcceaecb10b] [36mc.l.l.m.UserMapper.selectList_mpCount   [0;39m [2m:[0;39m <==      Total: 1
+[2m2024-08-20 17:21:08.139[0;39m [32mDEBUG[0;39m [35m51475[0;39m [2m---[0;39m [2m[nio-8080-exec-5][0;39m [a45734a78f1b4949ab9b1fcceaecb10b] [36mc.l.lemon3.mapper.UserMapper.selectList [0;39m [2m:[0;39m ==>  Preparing: SELECT id,name,age,email,is_delete,create_time,modify_time FROM t_user LIMIT ?
+[2m2024-08-20 17:21:08.141[0;39m [32mDEBUG[0;39m [35m51475[0;39m [2m---[0;39m [2m[nio-8080-exec-5][0;39m [a45734a78f1b4949ab9b1fcceaecb10b] [36mc.l.lemon3.mapper.UserMapper.selectList [0;39m [2m:[0;39m ==> Parameters: 1(Long)
+[2m2024-08-20 17:21:08.173[0;39m [32mDEBUG[0;39m [35m51475[0;39m [2m---[0;39m [2m[nio-8080-exec-5][0;39m [a45734a78f1b4949ab9b1fcceaecb10b] [36mc.l.lemon3.mapper.UserMapper.selectList [0;39m [2m:[0;39m <==      Total: 1
+[2m2024-08-20 17:21:08.354[0;39m [32m INFO[0;39m [35m51475[0;39m [2m---[0;39m [2m[nio-8080-exec-5][0;39m [] [36mcom.leavis.lemon3.filter.WebLogFilter   [0;39m [2m:[0;39m HTTP GET /user/page {request params: {pageSize=1, page=1},request body: ,client ip: 0:0:0:0:0:0:0:1,response body: {"traceId":"a45734a78f1b4949ab9b1fcceaecb10b","code":"SYS00000","msg":"交易成功","data":[{"id":1,"name":"Jone","age":18,"email":"test1@baomidou.com"}],"total":5},cost: 415ms}
+[2m2024-08-20 17:21:28.801[0;39m [32mDEBUG[0;39m [35m51475[0;39m [2m---[0;39m [2m[nio-8080-exec-6][0;39m [27d7dd1beb6247c7ba14a1f927878f1b] [36mc.l.l.m.UserMapper.selectList_mpCount   [0;39m [2m:[0;39m ==>  Preparing: SELECT COUNT(*) AS total FROM t_user
+[2m2024-08-20 17:21:28.803[0;39m [32mDEBUG[0;39m [35m51475[0;39m [2m---[0;39m [2m[nio-8080-exec-6][0;39m [27d7dd1beb6247c7ba14a1f927878f1b] [36mc.l.l.m.UserMapper.selectList_mpCount   [0;39m [2m:[0;39m ==> Parameters: 
+[2m2024-08-20 17:21:28.839[0;39m [32mDEBUG[0;39m [35m51475[0;39m [2m---[0;39m [2m[nio-8080-exec-6][0;39m [27d7dd1beb6247c7ba14a1f927878f1b] [36mc.l.l.m.UserMapper.selectList_mpCount   [0;39m [2m:[0;39m <==      Total: 1
+[2m2024-08-20 17:21:28.842[0;39m [32mDEBUG[0;39m [35m51475[0;39m [2m---[0;39m [2m[nio-8080-exec-6][0;39m [27d7dd1beb6247c7ba14a1f927878f1b] [36mc.l.lemon3.mapper.UserMapper.selectList [0;39m [2m:[0;39m ==>  Preparing: SELECT id,name,age,email,is_delete,create_time,modify_time FROM t_user LIMIT ?
+[2m2024-08-20 17:21:28.842[0;39m [32mDEBUG[0;39m [35m51475[0;39m [2m---[0;39m [2m[nio-8080-exec-6][0;39m [27d7dd1beb6247c7ba14a1f927878f1b] [36mc.l.lemon3.mapper.UserMapper.selectList [0;39m [2m:[0;39m ==> Parameters: 3(Long)
+[2m2024-08-20 17:21:28.872[0;39m [32mDEBUG[0;39m [35m51475[0;39m [2m---[0;39m [2m[nio-8080-exec-6][0;39m [27d7dd1beb6247c7ba14a1f927878f1b] [36mc.l.lemon3.mapper.UserMapper.selectList [0;39m [2m:[0;39m <==      Total: 3
+[2m2024-08-20 17:21:28.888[0;39m [32m INFO[0;39m [35m51475[0;39m [2m---[0;39m [2m[nio-8080-exec-6][0;39m [] [36mcom.leavis.lemon3.filter.WebLogFilter   [0;39m [2m:[0;39m HTTP GET /user/page {request params: {pageSize=3, page=1},request body: ,client ip: 0:0:0:0:0:0:0:1,response body: {"traceId":"27d7dd1beb6247c7ba14a1f927878f1b","code":"SYS00000","msg":"交易成功","data":[{"id":1,"name":"Jone","age":18,"email":"test1@baomidou.com"},{"id":2,"name":"Jack","age":20,"email":"test2@baomidou.com"},{"id":3,"name":"Tom","age":28,"email":"test3@baomidou.com"}],"total":5},cost: 136ms}
+[2m2024-08-20 17:22:18.400[0;39m [32m INFO[0;39m [35m51475[0;39m [2m---[0;39m [2m[ionShutdownHook][0;39m [] [36mcom.alibaba.druid.pool.DruidDataSource  [0;39m [2m:[0;39m {dataSource-1} closing ...
+[2m2024-08-20 17:22:18.418[0;39m [32m INFO[0;39m [35m51475[0;39m [2m---[0;39m [2m[ionShutdownHook][0;39m [] [36mcom.alibaba.druid.pool.DruidDataSource  [0;39m [2m:[0;39m {dataSource-1} closed
+2024-08-20 17:23:20.827  INFO 52281 --- [           main] [] c.leavis.lemon3.Lemon3ApplicationTests   : Starting Lemon3ApplicationTests using Java 21.0.1 with PID 52281 (started by paynejlli in /Users/paynejlli/CloudDisk/IdeaProjects/lemon3)
+2024-08-20 17:23:20.829  INFO 52281 --- [           main] [] c.leavis.lemon3.Lemon3ApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2024-08-20 17:23:25.786  INFO 52281 --- [           main] [] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2024-08-20 17:23:25.896  INFO 52281 --- [           main] [] c.leavis.lemon3.Lemon3ApplicationTests   : Started Lemon3ApplicationTests in 5.841 seconds (process running for 7.351)
+2024-08-20 17:23:27.339  INFO 52281 --- [ionShutdownHook] [] com.alibaba.druid.pool.DruidDataSource   : {dataSource-0} closing ...
+[2m2024-08-20 17:38:55.532[0;39m [32m INFO[0;39m [35m58725[0;39m [2m---[0;39m [2m[           main][0;39m [] [36mcom.leavis.lemon3.Lemon3Application     [0;39m [2m:[0;39m Starting Lemon3Application using Java 21.0.1 with PID 58725 (/Users/paynejlli/CloudDisk/IdeaProjects/lemon3/target/classes started by paynejlli in /Users/paynejlli/CloudDisk/IdeaProjects/lemon3)
+[2m2024-08-20 17:38:55.536[0;39m [32m INFO[0;39m [35m58725[0;39m [2m---[0;39m [2m[           main][0;39m [] [36mcom.leavis.lemon3.Lemon3Application     [0;39m [2m:[0;39m No active profile set, falling back to 1 default profile: "default"
+[2m2024-08-20 17:38:57.369[0;39m [32m INFO[0;39m [35m58725[0;39m [2m---[0;39m [2m[           main][0;39m [] [36mo.s.b.w.embedded.tomcat.TomcatWebServer [0;39m [2m:[0;39m Tomcat initialized with port 8080 (http)
+[2m2024-08-20 17:38:57.381[0;39m [32m INFO[0;39m [35m58725[0;39m [2m---[0;39m [2m[           main][0;39m [] [36mo.apache.catalina.core.StandardService  [0;39m [2m:[0;39m Starting service [Tomcat]
+[2m2024-08-20 17:38:57.381[0;39m [32m INFO[0;39m [35m58725[0;39m [2m---[0;39m [2m[           main][0;39m [] [36mo.apache.catalina.core.StandardEngine   [0;39m [2m:[0;39m Starting Servlet engine: [Apache Tomcat/10.1.26]
+[2m2024-08-20 17:38:57.546[0;39m [32m INFO[0;39m [35m58725[0;39m [2m---[0;39m [2m[           main][0;39m [] [36mo.a.c.c.C.[Tomcat].[localhost].[/]      [0;39m [2m:[0;39m Initializing Spring embedded WebApplicationContext
+[2m2024-08-20 17:38:57.553[0;39m [32m INFO[0;39m [35m58725[0;39m [2m---[0;39m [2m[           main][0;39m [] [36mw.s.c.ServletWebServerApplicationContext[0;39m [2m:[0;39m Root WebApplicationContext: initialization completed in 1960 ms
+[2m2024-08-20 17:38:58.888[0;39m [32m INFO[0;39m [35m58725[0;39m [2m---[0;39m [2m[           main][0;39m [] [36mo.s.b.a.e.web.EndpointLinksResolver     [0;39m [2m:[0;39m Exposing 1 endpoint beneath base path '/actuator'
+[2m2024-08-20 17:38:58.968[0;39m [32m INFO[0;39m [35m58725[0;39m [2m---[0;39m [2m[           main][0;39m [] [36mo.s.b.w.embedded.tomcat.TomcatWebServer [0;39m [2m:[0;39m Tomcat started on port 8080 (http) with context path '/'
+[2m2024-08-20 17:38:58.996[0;39m [32m INFO[0;39m [35m58725[0;39m [2m---[0;39m [2m[           main][0;39m [] [36mcom.leavis.lemon3.Lemon3Application     [0;39m [2m:[0;39m Started Lemon3Application in 4.162 seconds (process running for 5.175)
+[2m2024-08-20 17:38:59.376[0;39m [32m INFO[0;39m [35m58725[0;39m [2m---[0;39m [2m[on(2)-127.0.0.1][0;39m [] [36mo.a.c.c.C.[Tomcat].[localhost].[/]      [0;39m [2m:[0;39m Initializing Spring DispatcherServlet 'dispatcherServlet'
+[2m2024-08-20 17:38:59.378[0;39m [32m INFO[0;39m [35m58725[0;39m [2m---[0;39m [2m[on(2)-127.0.0.1][0;39m [] [36mo.s.web.servlet.DispatcherServlet       [0;39m [2m:[0;39m Initializing Servlet 'dispatcherServlet'
+[2m2024-08-20 17:38:59.381[0;39m [32m INFO[0;39m [35m58725[0;39m [2m---[0;39m [2m[on(2)-127.0.0.1][0;39m [] [36mo.s.web.servlet.DispatcherServlet       [0;39m [2m:[0;39m Completed initialization in 2 ms
+[2m2024-08-20 17:38:59.429[0;39m [32m INFO[0;39m [35m58725[0;39m [2m---[0;39m [2m[on(3)-127.0.0.1][0;39m [] [36mcom.alibaba.druid.pool.DruidDataSource  [0;39m [2m:[0;39m {dataSource-1} inited
+2024-08-20 17:39:18.050  INFO 58830 --- [           main] [] c.leavis.lemon3.Lemon3ApplicationTests   : Starting Lemon3ApplicationTests using Java 21.0.1 with PID 58830 (started by paynejlli in /Users/paynejlli/CloudDisk/IdeaProjects/lemon3)
+2024-08-20 17:39:18.051  INFO 58830 --- [           main] [] c.leavis.lemon3.Lemon3ApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2024-08-20 17:39:22.563  INFO 58830 --- [           main] [] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2024-08-20 17:39:22.674  INFO 58830 --- [           main] [] c.leavis.lemon3.Lemon3ApplicationTests   : Started Lemon3ApplicationTests in 5.312 seconds (process running for 6.717)
+2024-08-20 17:39:23.994  INFO 58830 --- [ionShutdownHook] [] com.alibaba.druid.pool.DruidDataSource   : {dataSource-0} closing ...
+2024-08-20 17:42:01.925  INFO 59895 --- [           main] [] c.leavis.lemon3.Lemon3ApplicationTests   : Starting Lemon3ApplicationTests using Java 21.0.1 with PID 59895 (started by paynejlli in /Users/paynejlli/CloudDisk/IdeaProjects/lemon3)
+2024-08-20 17:42:01.927  INFO 59895 --- [           main] [] c.leavis.lemon3.Lemon3ApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2024-08-20 17:42:06.709  INFO 59895 --- [           main] [] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2024-08-20 17:42:06.817  INFO 59895 --- [           main] [] c.leavis.lemon3.Lemon3ApplicationTests   : Started Lemon3ApplicationTests in 5.596 seconds (process running for 6.982)
+2024-08-20 17:42:08.145  INFO 59895 --- [ionShutdownHook] [] com.alibaba.druid.pool.DruidDataSource   : {dataSource-0} closing ...
