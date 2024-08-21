@@ -1,17 +1,46 @@
 package com.leavis.lemon3;
 
+import static org.hamcrest.core.StringContains.containsString;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import com.jd.platform.async.executor.Async;
 import com.jd.platform.async.wrapper.WorkerWrapper;
 import java.util.concurrent.ExecutionException;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.web.servlet.MockMvc;
 
+@AutoConfigureMockMvc
 @SpringBootTest
 class Lemon3ApplicationTests {
+
+    @Autowired
+    private MockMvc mockMvc;
 
     @Test
     void contextLoads() {
     }
+
+    @Test
+    public void testUserPage() throws Exception {
+        this.mockMvc.perform(get("/user/page"))
+//                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("SYS00000")));
+    }
+
+    @Test
+    public void testWeather() throws Exception {
+        this.mockMvc.perform(get("/amap/weather?cityCode=110000"))
+//                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("SYS00000")));
+    }
+
 
     @Test
     void test() throws ExecutionException, InterruptedException {
