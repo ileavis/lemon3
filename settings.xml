@@ -39,8 +39,8 @@
                     <snapshots>  
                         <enabled>false</enabled>  
                     </snapshots>  
-                </repository>  
-            </repositories>  
+                </repository>
+            </repositories>
             <pluginRepositories>  
                 <pluginRepository>  
                     <id>nexus</id>  
