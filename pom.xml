@@ -23,7 +23,6 @@
         <mybatis-plus.version>3.5.7</mybatis-plus.version>
         <druid.version>1.2.22</druid.version>
         <springdoc.version>2.2.0</springdoc.version>
-        <skipTests>true</skipTests>
     </properties>
     <dependencies>
         <dependency>
