@@ -13,6 +13,7 @@ import feign.gson.GsonEncoder;
 import feign.httpclient.ApacheHttpClient;
 import feign.slf4j.Slf4jLogger;
 import jakarta.annotation.Resource;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -26,9 +27,11 @@ public class AmapServiceImpl implements AmapService {
     @Resource
     private AmapConfig amapConfig;
 
+    @Cacheable(cacheNames = "weatherCache", unless = "#result == null || #result.trim().isEmpty()")
     @Override
     public String getWeatherInfo(String cityCode) {
-        WeatherForecastResponse weatherForecastResponse = this.getAmapClient().weatherInfo(amapConfig.getApiKey(), cityCode);
+        WeatherForecastResponse weatherForecastResponse = this.getAmapClient()
+                .weatherInfo(amapConfig.getApiKey(), cityCode);
         Gson gson = new Gson();
         return gson.toJson(weatherForecastResponse);
     }

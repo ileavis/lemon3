@@ -40,7 +40,7 @@ public class UserController {
         Page<UserBO> userBOPage = userService.getUserPage(pageParamDTO.getPage(),
                 pageParamDTO.getPageSize());
         if (CollectionUtils.isEmpty(userBOPage.getRecords())) {
-            return Result.successPage(new ArrayList<>(), 0L);
+            return Result.successPage(new ArrayList<>(), userBOPage.getTotal());
         }
         List<UserInfoDTO> userInfoDTOList = userBOPage.getRecords().stream().map(e -> {
             UserInfoDTO userInfoDTO = new UserInfoDTO();

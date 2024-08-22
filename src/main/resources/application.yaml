@@ -79,18 +79,24 @@ spring:
         # 登录用户名/密码
         login-username: root
         login-password: 123
-  redis:
-    host: 9.135.135.63
-    port: 6380
-    password: Amsay*3265UVRs
-    database: 0
+  data:
+    redis:
+      host: 9.135.135.63
+      port: 6380
+      password: Amsay*3265UVRs
+      database: 0
+  redis-cache:
+    # 对引用的 key 设置过期时间
+    keys-ttl:
+      weatherCache: 10s
+
 
 logging:
   level:
     root: INFO
     mybatis: DEBUG
     # 对指定的包开启日志级别
-    com.lemon.demo.client: DEBUG
+    com.leavis.lemon3.client: DEBUG
 
 lemon:
   # 高德相关的配置
