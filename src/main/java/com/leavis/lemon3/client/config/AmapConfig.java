@@ -1,5 +1,6 @@
 package com.leavis.lemon3.client.config;
 
+import java.time.Duration;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -18,7 +19,7 @@ public class AmapConfig {
 
     private String apiKey;
 
-    private Integer timeout;
+    private Duration timeout;
 
-    private Integer readTime;
+    private Duration readTime;
 }
