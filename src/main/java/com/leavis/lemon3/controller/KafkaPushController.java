@@ -68,6 +68,16 @@ public class KafkaPushController {
         if (!sendResult.get()) {
             BizException.throwException(ResultCodeEnum.FAILED);
         }
+
+//        //执行成功回调
+//        future.thenAccept(result -> {
+//            log.debug("发送成功:{}", JSONUtil.toJsonStr(result.getProducerRecord().value()));
+//        });
+//        //执行失败回调
+//        future.exceptionally(e -> {
+//            log.error("发送失败", JSONUtil.toJsonStr(kafkaMessageReqDTO), e);
+//            return null;
+//        });
         return Result.successNobody();
     }
 }
