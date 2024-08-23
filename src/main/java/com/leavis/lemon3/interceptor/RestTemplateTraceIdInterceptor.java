@@ -1,5 +1,6 @@
 package com.leavis.lemon3.interceptor;
 
+import com.leavis.lemon3.mdc.TraceIdUtil;
 import java.io.IOException;
 import java.util.UUID;
 import org.slf4j.MDC;
@@ -15,16 +16,14 @@ import org.springframework.http.client.ClientHttpResponse;
  */
 public class RestTemplateTraceIdInterceptor implements ClientHttpRequestInterceptor {
 
-    private static final String TRACE_ID = "traceId";
-
     @Override
     public ClientHttpResponse intercept(HttpRequest request, byte[] body,
             ClientHttpRequestExecution clientHttpRequestExecution) throws IOException {
-        String traceId = MDC.get(TRACE_ID);
+        String traceId = MDC.get(TraceIdUtil.TRACE_ID);
         if (traceId != null) {
-            request.getHeaders().set(TRACE_ID, traceId);
+            request.getHeaders().set(TraceIdUtil.HTTP_HEADER_TRACE_ID, traceId);
         } else {
-            request.getHeaders().set(TRACE_ID, UUID.randomUUID().toString().replace("-", ""));
+            request.getHeaders().set(TraceIdUtil.HTTP_HEADER_TRACE_ID, TraceIdUtil.generateTraceId());
         }
         return clientHttpRequestExecution.execute(request, body);
     }

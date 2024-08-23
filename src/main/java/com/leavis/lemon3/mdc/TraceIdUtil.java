@@ -11,6 +11,7 @@ import org.slf4j.MDC;
 public class TraceIdUtil {
 
     public static final String TRACE_ID = "traceId";
+    public static final String HTTP_HEADER_TRACE_ID = "x-lemon-traceId";
 
     public static String getTraceId() {
         String traceId = MDC.get(TRACE_ID);

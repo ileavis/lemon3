@@ -32,7 +32,7 @@ import org.springframework.util.StreamUtils;
  * @Description: 日志打印
  * @Date: 2024/8/20 15:22
  */
-@Order(1)
+@Order(2)
 @Slf4j
 @WebFilter(urlPatterns = "/*")
 public class WebLogFilter implements Filter {
