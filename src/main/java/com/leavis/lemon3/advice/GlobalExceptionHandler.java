@@ -14,21 +14,23 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 /**
  * @Author: paynejlli
  * @Description: 全局异常处理
  * @Date: 2024/8/20 15:12
  */
-@RestControllerAdvice
+@ControllerAdvice
 @ResponseBody
 @Slf4j
 public class GlobalExceptionHandler<ServiceException extends BizException> {
 
+    @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(value = {MethodArgumentNotValidException.class})
     public Result<String> handleValidException(MethodArgumentNotValidException ex,
@@ -51,6 +53,7 @@ public class GlobalExceptionHandler<ServiceException extends BizException> {
         return Result.failed(ResultCodeEnum.FAILED.getCode(), errorMsg.toString());
     }
 
+    @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(BizException.class)
     public Result bizExceptionHandler(HttpServletRequest request, ServiceException exception) {
@@ -61,6 +64,7 @@ public class GlobalExceptionHandler<ServiceException extends BizException> {
         return Result.failed(exception.getCode(), exception.getMessage());
     }
 
+    @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(Exception.class)
     public Result unknownHandler(HttpServletRequest request, Exception exception) {
@@ -76,8 +80,8 @@ public class GlobalExceptionHandler<ServiceException extends BizException> {
         return Result.failed(ResultCodeEnum.FAILED.getCode(), ResultCodeEnum.FAILED.getMsg());
     }
 
-    @ResponseStatus(HttpStatus.OK)
-    @ExceptionHandler(BindException.class)
+    @ResponseBody
+    @ExceptionHandler(NoResourceFoundException.class)
     public Result bindException(BindException e) {
         BindingResult bindingResult = e.getBindingResult();
         return Result.failed(ResultCodeEnum.PARAMETER_ERROR.getCode(),

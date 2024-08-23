@@ -65,7 +65,10 @@ public class Result<T> implements BaseError {
         return result;
     }
 
-    public static boolean isSucceed(Result result) {
-        return result.getCode().equals(ResultCodeEnum.SUCCESS.getCode());
+    public static <T> Result failed(BaseError baseError) {
+        Result<T> result = new Result<>();
+        result.setCode(baseError.getCode());
+        result.setMsg(baseError.getMsg());
+        return result;
     }
 }
