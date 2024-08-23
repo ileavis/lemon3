@@ -1,6 +1,7 @@
 package com.leavis.lemon3.filter;
 
 import cn.hutool.extra.servlet.JakartaServletUtil;
+import com.leavis.lemon3.mdc.TraceIdUtil;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ReadListener;
@@ -24,15 +25,16 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.annotation.Order;
 import org.springframework.util.StreamUtils;
 
 /**
  * @Author: paynejlli
- * @Description: 日志打印
+ * @Description: 添加traceId并打印日志
  * @Date: 2024/8/20 15:22
  */
-@Order(2)
+@Order(1)
 @Slf4j
 @WebFilter(urlPatterns = "/*")
 public class WebLogFilter implements Filter {
@@ -40,18 +42,31 @@ public class WebLogFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain)
             throws IOException, ServletException {
-        long start = System.currentTimeMillis();
+
         HttpServletRequest request = (HttpServletRequest) servletRequest;
+        // 如果有上层调用就用上层的ID
+        String traceId = request.getHeader(TraceIdUtil.HTTP_HEADER_TRACE_ID);
+        if (StringUtils.isBlank(traceId)) {
+            TraceIdUtil.setTraceId(TraceIdUtil.generateTraceId());
+        } else {
+            TraceIdUtil.setTraceId(traceId);
+        }
+
+        long start = System.currentTimeMillis();
         RequestWrapper requestWrapper = new RequestWrapper(request);
         ResponseWrapper responseWrapper = new ResponseWrapper((HttpServletResponse) servletResponse);
 
-        chain.doFilter(requestWrapper, responseWrapper);
-
-        log.info("HTTP {} {} {request params: {},request body: {},client ip: {},response body: {},cost: {}ms}",
-                request.getMethod(), request.getRequestURI(), JakartaServletUtil.getParamMap(request),
-                requestWrapper.getBodyAsString(),
-                JakartaServletUtil.getClientIP(request), responseWrapper.getContentAsString(),
-                System.currentTimeMillis() - start);
+        try {
+            chain.doFilter(requestWrapper, responseWrapper);
+            log.info("HTTP {} {} {request params: {},request body: {},client ip: {},response body: {},cost: {}ms}",
+                    request.getMethod(), request.getRequestURI(), JakartaServletUtil.getParamMap(request),
+                    requestWrapper.getBodyAsString(),
+                    JakartaServletUtil.getClientIP(request), responseWrapper.getContentAsString(),
+                    System.currentTimeMillis() - start);
+        } finally {
+            // 清除 MDC 中的 traceId
+            TraceIdUtil.remove();
+        }
 
         ServletOutputStream outputStream = servletResponse.getOutputStream();
         outputStream.write(responseWrapper.getContent());
