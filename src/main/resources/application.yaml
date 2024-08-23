@@ -118,6 +118,11 @@ spring:
     keys-ttl:
       weatherCache: 10s
 
+springdoc:
+  api-docs:
+    enabled: false # 关闭OpenApi接口
+  swagger-ui:
+    enabled: false # 关闭swagger界面
 
 logging:
   level:
