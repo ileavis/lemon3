@@ -1,6 +1,7 @@
 package com.leavis.lemon3.filter;
 
 import cn.hutool.extra.servlet.JakartaServletUtil;
+import cn.hutool.json.JSONUtil;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ReadListener;
@@ -49,8 +50,9 @@ public class WebLogFilter implements Filter {
 
         log.info("HTTP {} {} {request params: {},request body: {},client ip: {},response body: {},cost: {}ms}",
                 request.getMethod(), request.getRequestURI(), JakartaServletUtil.getParamMap(request),
-                requestWrapper.getBodyAsString(),
-                JakartaServletUtil.getClientIP(request), responseWrapper.getContentAsString(),
+                JSONUtil.toJsonStr(JSONUtil.parseObj(requestWrapper.getBody())),
+                JakartaServletUtil.getClientIP(request),
+                JSONUtil.toJsonStr(JSONUtil.parseObj(responseWrapper.getContent())),
                 System.currentTimeMillis() - start);
 
         ServletOutputStream outputStream = servletResponse.getOutputStream();

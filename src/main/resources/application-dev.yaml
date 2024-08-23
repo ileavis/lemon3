@@ -12,16 +12,10 @@ spring:
     bootstrap-servers: 21.6.181.172:9092
 springdoc:
   api-docs:
-    enabled: false # 关闭OpenApi接口
+    enabled: true # 个人开发打开OpenApi接口
   swagger-ui:
-    enabled: false # 关闭swagger界面
+    enabled: true # 个人开发打开swagger界面
 lemon:
   # 高德相关的配置
   amp:
     api-key: 67953f7ce7d657144d5f3b12f84310ed
-    domain: https://restapi.amap.com
-    read-time: 10000
-    timeout: 10000
-  kafka:
-    consumer:
-      topic: demo-topic

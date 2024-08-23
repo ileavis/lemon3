@@ -21,7 +21,7 @@ public class KafkaListenConsumer {
         log.info("=====消费者接收信息====");
         try {
             for (ConsumerRecord record : records) {
-                log.info("---解析设备流水数据:{}", record.toString());
+                log.info("---解析消息内容:{}", record.toString());
                 // 具体service里取做逻辑
             }
             // 手动提交偏移量
