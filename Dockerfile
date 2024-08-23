@@ -16,7 +16,7 @@ ENV APP_PARAMS ''
 
 ENV JAR_FILE_DIR ./target
 ENV JAR_FILE_NAME lemon3-1.0.0-SNAPSHOT.jar
-# ENV PROFILES_ACTIVE dev
+ENV PROFILES_ACTIVE dev
 ENV JAVA_OPTS "-XX:+UseContainerSupport -XX:MaxRAMPercentage=70.0 -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/data/logs/oom.hprof"
 COPY ${JAR_FILE_DIR}/${JAR_FILE_NAME} .
 
