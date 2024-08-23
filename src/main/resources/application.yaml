@@ -85,6 +85,34 @@ spring:
       port: 6380
       password: Amsay*3265UVRs
       database: 0
+  kafka:
+    bootstrap-servers: 21.6.181.172:9092
+    client-id: lemon3
+    consumer:
+      group-id: lemon3-group
+      max-poll-records: 10
+      #Kafka中没有初始偏移或如果当前偏移在服务器上不再存在时,默认区最新 ，有三个选项 【latest, earliest, none】
+      auto-offset-reset: earliest
+      #是否开启自动提交
+      enable-auto-commit: false
+      #自动提交的时间间隔
+      auto-commit-interval: 1000
+    producer:
+      acks: 1
+      batch-size: 4096
+      buffer-memory: 40960000
+      client-id: lemon3
+      compression-type: zstd
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      retries: 3
+      properties:
+        spring.json.add.type.headers: false
+        max.request.size: 126951500
+    listener:
+      ack-mode: MANUAL_IMMEDIATE
+      concurrency: 3  #推荐设置为topic的分区数
+      type: BATCH #开启批量监听
+
   redis-cache:
     # 对引用的 key 设置过期时间
     keys-ttl:
@@ -105,3 +133,6 @@ lemon:
     domain: https://restapi.amap.com
     read-time: 10000
     timeout: 10000
+  kafka:
+    consumer:
+      topic: demo-topic

@@ -10,7 +10,7 @@ KUBE_CMD=kubectl
 SERVICE_NAME=lemon3-service
 
 # 默认目标
-all: package docker-build
+all: package docker-build clean
 
 # 目标：使用指定的 settings 文件运行 Maven 安装
 install:
@@ -30,7 +30,7 @@ docker-build:
 
 # 清理目标：清理项目
 clean:
-	$(MAVEN_CMD) clean -f $(ROOT_POM_FILE)
+	$(MAVEN_CMD) clean -s $(SETTINGS_FILE) -f $(POM_FILE)
 
 # 目标：运行 Docker 镜像
 docker-run:
@@ -44,6 +44,9 @@ kube-run:
 kube-expose:
 	$(KUBE_CMD) expose pod $(POD_NAME) --type=NodePort --port=8080 --name=$(SERVICE_NAME)
 
+kube-delete:
+	$(KUBE_CMD) delete pod $(POD_NAME)
+
 # 帮助目标：列出可用的目标
 help:
 	@echo "可用的目标:"
@@ -53,6 +56,7 @@ help:
 	@echo "  docker-build- 从指定的 Dockerfile 构建 Docker 镜像"
 	@echo "  clean       - 清理项目"
 	@echo "  docker-run  - 运行 Docker 镜像"
+	@echo "  docker-clean- 清理 Docker 镜像"
 	@echo "  kube-run    - 在 Kubernetes 中运行 Pod"
 	@echo "  kube-expose - 在 Kubernetes 中暴露 Pod 为 NodePort 服务"
-	@echo "  docker-clean- 清理 Docker 镜像"
+	@echo "  kube-delete - 在 Kubernetes 中删除 Pod"

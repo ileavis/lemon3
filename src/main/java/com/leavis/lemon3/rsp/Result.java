@@ -42,8 +42,8 @@ public class Result<T> implements BaseError {
         return result;
     }
 
-    public static <T> Result<T> successNobody() {
-        Result<T> result = new Result<>();
+    public static Result successNobody() {
+        Result result = new Result<>();
         result.setCode(ResultCodeEnum.SUCCESS.getCode());
         result.setMsg(ResultCodeEnum.SUCCESS.getMsg());
         return result;
