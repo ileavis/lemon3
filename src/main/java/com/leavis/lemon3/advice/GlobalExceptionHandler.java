@@ -17,7 +17,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 /**
@@ -30,8 +29,6 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 @Slf4j
 public class GlobalExceptionHandler<ServiceException extends BizException> {
 
-    @ResponseBody
-    @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(value = {MethodArgumentNotValidException.class})
     public Result<String> handleValidException(MethodArgumentNotValidException ex,
             HttpServletResponse httpServletResponse) {
@@ -53,19 +50,15 @@ public class GlobalExceptionHandler<ServiceException extends BizException> {
         return Result.failed(ResultCodeEnum.FAILED.getCode(), errorMsg.toString());
     }
 
-    @ResponseBody
-    @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(BizException.class)
     public Result bizExceptionHandler(HttpServletRequest request, ServiceException exception) {
         // BizException属于可以预见的业务异常，使用warn进行打印。如果需要针对BizException建立告警，建议通过Code编码来进行
         log.error("服务出现异常  method={} requestURI={} code={} msg={}",
                 request.getMethod(), request.getRequestURI(),
                 exception.getCode(), exception.getMessage(), exception);
-        return Result.failed(exception.getCode(), exception.getMessage());
+        return Result.failed(exception);
     }
 
-    @ResponseBody
-    @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(Exception.class)
     public Result unknownHandler(HttpServletRequest request, Exception exception) {
         if (exception instanceof ClientAbortException) {
@@ -80,8 +73,14 @@ public class GlobalExceptionHandler<ServiceException extends BizException> {
         return Result.failed(ResultCodeEnum.FAILED.getCode(), ResultCodeEnum.FAILED.getMsg());
     }
 
-    @ResponseBody
     @ExceptionHandler(NoResourceFoundException.class)
+    public Result noResourceFoundException(BindException e) {
+        BindingResult bindingResult = e.getBindingResult();
+        return Result.failed(ResultCodeEnum.PARAMETER_ERROR.getCode(),
+                Objects.requireNonNull(bindingResult.getFieldError()).getDefaultMessage());
+    }
+
+    @ExceptionHandler(BindException.class)
     public Result bindException(BindException e) {
         BindingResult bindingResult = e.getBindingResult();
         return Result.failed(ResultCodeEnum.PARAMETER_ERROR.getCode(),
