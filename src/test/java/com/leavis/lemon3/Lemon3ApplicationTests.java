@@ -15,7 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
 @AutoConfigureMockMvc //不启动服务器,使用mockMvc进行测试http请求。启动了完整的Spring应用程序上下文，但没有启动服务器
-@SpringBootTest
+@SpringBootTest(classes = Lemon3Application.class, properties = "spring.profiles.active=dev")
 class Lemon3ApplicationTests {
 
     @Resource
