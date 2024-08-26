@@ -1,25 +1,21 @@
 server:
   port: 8080
-
-#nacos:
-#  config:
-#    bootstrap:
-#      enable: true
-#    server-addr: ${NACOS_SERVER:nacos.oneos-server.com:8848}
-#    remote-first: true
-#    data-ids: global-config.yaml,${spring.application.name}-${PROFILES_ACTIVE}.yaml
-#    #data-ids: global-config.yaml,${spring.application.name}.dev.yaml
-#    namespace: ${NACOS_NAMESPACE:3b70a32c-8fa6-4f77-961e-ba4d9518dbdb}
-#    type: yaml
-#    auto-refresh: true
-#    username: ${NACOS_USERNAME:nacos}
-#    password: ${NACOS_PASSWORD:nacos}
-
 spring:
   application:
     name: lemon3
-  #  profiles:
-  #    active: dev #默认为开发环境
+  config:
+    import: nacos:global-config-${spring.profiles.active}.yaml,nacos:${spring.application.name}-${spring.profiles.active}.yaml
+  cloud:
+    nacos:
+      config:
+        server-addr: ${NACOS_SERVER:9.134.119.96:8848}
+        username: ${NACOS_USERNAME:nacos}
+        password: ${NACOS_PASSWORD:nacos}
+        namespace: ${NACOS_NAMESPACE:669e6433-2216-4695-a1cf-eefc05b99e6c}
+        file-extension: yaml
+        import-check:
+          enabled: false
+        refresh-enabled: true
   servlet:
     multipart:
       enabled: true #开启文件上传
@@ -134,7 +130,7 @@ logging:
 lemon:
   # 高德相关的配置
   amp:
-    api-key: xxxxxxx  # 更换为实际的 key
+    api-key: "********"  # 更换为实际的 key
     domain: https://restapi.amap.com
     read-time: 10000
     timeout: 10000

@@ -10,6 +10,7 @@ import org.springframework.cache.annotation.EnableCaching;
 @MapperScan("com.leavis.lemon3.mapper")
 @SpringBootApplication
 @EnableCaching
+//@EnableDiscoveryClient 注册中心
 public class Lemon3Application {
 
     public static void main(String[] args) {

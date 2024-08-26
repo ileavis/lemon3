@@ -1,21 +1,22 @@
-spring:
-  datasource:
-    url: jdbc:mysql://21.6.163.117:3306/testdb?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
-    username: root
-    password: Tcdn@2024!
-  data:
-    redis:
-      host: 9.135.135.63
-      port: 6380
-      password: Amsay*3265UVRs
-  kafka:
-    bootstrap-servers: 21.6.181.172:9092
-springdoc:
-  api-docs:
-    enabled: true # 个人开发打开OpenApi接口
-  swagger-ui:
-    enabled: true # 个人开发打开swagger界面
-lemon:
-  # 高德相关的配置
-  amp:
-    api-key: 67953f7ce7d657144d5f3b12f84310ed
+# 配置中心内容
+#spring:
+#  datasource:
+#    url: jdbc:mysql://21.6.163.117:3306/testdb?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+#    username: root
+#    password: Tcdn@2024!
+#  data:
+#    redis:
+#      host: 9.135.135.63
+#      port: 6380
+#      password: Amsay*3265UVRs
+#  kafka:
+#    bootstrap-servers: 21.6.181.172:9092
+#springdoc:
+#  api-docs:
+#    enabled: true # 个人开发打开OpenApi接口
+#  swagger-ui:
+#    enabled: true # 个人开发打开swagger界面
+#lemon:
+#  # 高德相关的配置
+#  amp:
+#    api-key: 67953f7ce7d657144d5f3b12f84310ed

@@ -5,7 +5,8 @@ import java.time.Duration;
 import java.util.Map;
 import lombok.Getter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * @Author: paynejlli
@@ -13,8 +14,9 @@ import org.springframework.stereotype.Component;
  * @Date: 2024/8/22 10:45
  */
 @Getter
-@Component
+@Configuration
 @ConfigurationProperties(prefix = "spring.redis-cache")
+@RefreshScope
 public class RedisCacheProperties {
 
     private final Map<String, Duration> keysTtl = Maps.newHashMap();
