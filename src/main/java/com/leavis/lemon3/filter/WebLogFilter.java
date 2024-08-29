@@ -68,10 +68,11 @@ public class WebLogFilter implements Filter {
             TraceIdUtil.remove();
         }
 
-        ServletOutputStream outputStream = servletResponse.getOutputStream();
-        outputStream.write(responseWrapper.getContent());
-        outputStream.flush();
-        outputStream.close();
+        // 使用try-with-resources语句确保ServletOutputStream在处理完毕后自动关闭。
+        try (ServletOutputStream outputStream = servletResponse.getOutputStream()) {
+            outputStream.write(responseWrapper.getContent());
+            outputStream.flush();
+        }
     }
 
     public static class RequestWrapper extends HttpServletRequestWrapper {
