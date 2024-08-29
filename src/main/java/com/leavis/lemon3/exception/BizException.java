@@ -30,28 +30,24 @@ public class BizException extends RuntimeException implements BaseError {
     }
 
     public BizException(String code, String msg) {
-        super("errorCode is " + code + ", and errMsg is " + msg);
+        super(String.format("Business exception occurred, error code: %s, error message: %s", code, msg));
         this.code = code;
         this.msg = msg;
     }
 
     public BizException(String code, String message, Throwable cause) {
-        super("errorCode is " + code + ", and errMsg is " + message, cause);
+        super(String.format("Business exception occurred, error code: %s, error message: %s", code, message), cause);
         this.code = code;
         this.msg = msg;
     }
 
 
     public BizException(BaseError baseError) {
-        super("errorCode is" + baseError.getCode() + ", and errMsg is" + baseError.getMsg());
-        this.code = baseError.getCode();
-        this.msg = baseError.getMsg();
+        this(baseError.getCode(), baseError.getMsg());
     }
 
     public BizException(BaseError baseError, Throwable cause) {
-        super("errorCode is" + baseError.getCode() + ", and errMsg is" + baseError.getMsg(), cause);
-        this.code = baseError.getCode();
-        this.msg = baseError.getMsg();
+        this(baseError.getCode(), baseError.getMsg(), cause);
     }
 
 
