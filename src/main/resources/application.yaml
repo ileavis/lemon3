@@ -10,7 +10,7 @@ spring:
       config:
         server-addr: ${NACOS_SERVER:9.134.119.96:8848}
         username: ${NACOS_USERNAME:nacos}
-        password: ${NACOS_PASSWORD:nacos}
+        password: ${NACOS_PASSWORD:Tcdn12345}
         namespace: ${NACOS_NAMESPACE:669e6433-2216-4695-a1cf-eefc05b99e6c}
         file-extension: yaml
         import-check:
