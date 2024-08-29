@@ -44,6 +44,7 @@ public class AmapServiceImpl implements AmapService {
     @Cacheable(cacheNames = "ip2LocationCache", unless = "#result == null || #result.trim().isEmpty()")
     @Override
     public String ip2Location(String ipv4) {
+        ipv4 = ipv4.trim();
         try {
             IpLocationRsp ipLocationRsp = amapClient.ip2Location(amapConfig.getApiKey(), ipv4);
             return ipLocationRsp.getProvince() + "-" + ipLocationRsp.getCity();
