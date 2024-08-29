@@ -113,6 +113,7 @@ spring:
     # 对引用的 key 设置过期时间
     keys-ttl:
       weatherCache: 10s
+      ip2LocationCache: 100s
 
 springdoc:
   api-docs:

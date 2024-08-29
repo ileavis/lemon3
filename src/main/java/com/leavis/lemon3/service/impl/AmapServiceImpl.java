@@ -3,6 +3,7 @@ package com.leavis.lemon3.service.impl;
 import com.google.gson.Gson;
 import com.leavis.lemon3.client.AmapClient;
 import com.leavis.lemon3.client.config.AmapConfig;
+import com.leavis.lemon3.client.model.IpLocationRsp;
 import com.leavis.lemon3.client.model.WeatherForecastResponse;
 import com.leavis.lemon3.exception.BizException;
 import com.leavis.lemon3.rsp.ResultCodeEnum;
@@ -36,6 +37,18 @@ public class AmapServiceImpl implements AmapService {
             return gson.toJson(weatherForecastResponse);
         } catch (Exception e) {
             log.error("Failed to get weather info for city code: {}", cityCode, e);
+            throw new BizException(ResultCodeEnum.FAILED, e);
+        }
+    }
+
+    @Cacheable(cacheNames = "ip2LocationCache", unless = "#result == null || #result.trim().isEmpty()")
+    @Override
+    public String ip2Location(String ipv4) {
+        try {
+            IpLocationRsp ipLocationRsp = amapClient.ip2Location(amapConfig.getApiKey(), ipv4);
+            return ipLocationRsp.getProvince() + "-" + ipLocationRsp.getCity();
+        } catch (Exception e) {
+            log.error("Failed to get ip location for ipv4: {}", ipv4, e);
             throw new BizException(ResultCodeEnum.FAILED, e);
         }
     }
