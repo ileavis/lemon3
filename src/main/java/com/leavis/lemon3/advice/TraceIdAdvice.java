@@ -23,8 +23,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 @ControllerAdvice
 public class TraceIdAdvice implements ResponseBodyAdvice<Object> {
 
-    private final ObjectMapper objectMapper = new ObjectMapper();
-
     @Override
     public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
         return true;
@@ -36,23 +34,11 @@ public class TraceIdAdvice implements ResponseBodyAdvice<Object> {
             ServerHttpRequest request, ServerHttpResponse response) {
         if (body == null) {
             log.warn("Response body is null");
-            return null;
+            return body;
         }
         if (body instanceof GenericRspDTO<?>) {
             // 如果返回的是 GenericRspDTO，可以在返回前添加 traceId
             ((GenericRspDTO<?>) body).setTraceId(TraceIdUtil.getTraceId());
-            return body;
-        } else if (body instanceof Map) {
-            try {
-                // 尝试将 body 转换为 Map 并添加 traceId
-                Map<String, Object> resultMap = objectMapper.convertValue(body, new TypeReference<>() {
-                });
-                resultMap.put("traceId", TraceIdUtil.getTraceId());
-                return objectMapper.writeValueAsString(resultMap);
-            } catch (Exception e) {
-                log.error("Failed to add traceId to response body", e);
-                return body;
-            }
         }
         return body;
     }

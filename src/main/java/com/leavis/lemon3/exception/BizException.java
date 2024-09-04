@@ -1,5 +1,6 @@
 package com.leavis.lemon3.exception;
 
+import com.leavis.lemon3.enums.ErrorCodeEnum;
 import java.io.Serial;
 import lombok.Getter;
 import lombok.Setter;
@@ -61,6 +62,10 @@ public class BizException extends RuntimeException implements BaseError {
 
     public static void throwException(BaseError baseError) {
         throw new BizException(baseError);
+    }
+
+    public static void throwException(String msg) {
+        throw new BizException(ErrorCodeEnum.FAILED.getCode(), msg);
     }
 
     public static void throwException(BaseError baseError, Throwable cause) {

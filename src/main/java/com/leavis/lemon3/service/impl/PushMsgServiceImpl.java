@@ -1,6 +1,7 @@
 package com.leavis.lemon3.service.impl;
 
 import com.leavis.lemon3.config.NettyConfig;
+import com.leavis.lemon3.exception.BizException;
 import com.leavis.lemon3.service.PushMsgService;
 import io.netty.channel.Channel;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
@@ -19,9 +20,8 @@ public class PushMsgServiceImpl implements PushMsgService {
     public void pushMsgToOne(String userId, String msg) {
         Channel channel = NettyConfig.getChannel(userId);
         if (Objects.isNull(channel)) {
-            throw new RuntimeException("未连接socket服务器");
+            BizException.throwException("当前用户不在线");
         }
-
         channel.writeAndFlush(new TextWebSocketFrame(msg));
     }
 
