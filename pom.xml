@@ -23,6 +23,7 @@
         <mybatis-plus.version>3.5.7</mybatis-plus.version>
         <druid.version>1.2.22</druid.version>
         <springdoc.version>2.2.0</springdoc.version>
+        <netty-all.version>4.1.112.Final</netty-all.version>
         <skipTests>true</skipTests>
     </properties>
     <dependencies>
@@ -88,10 +89,10 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
         <!-- 服务发现 -->
-<!--        <dependency>-->
-<!--            <groupId>com.alibaba.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.alibaba.cloud</groupId>-->
+        <!--            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>-->
+        <!--        </dependency>-->
 
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -139,6 +140,11 @@
             <groupId>com.gitee.jd-platform-opensource</groupId>
             <artifactId>asyncTool</artifactId>
             <version>V1.4-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>${netty-all.version}</version>
         </dependency>
     </dependencies>
     <dependencyManagement>
@@ -191,11 +197,5 @@
             </plugin>
         </plugins>
     </build>
-    <repositories>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-    </repositories>
 
 </project>

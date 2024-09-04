@@ -16,7 +16,7 @@
             <mirrorOf>central</mirrorOf>  
             <name>Nexus aliyun</name>  
             <url>http://maven.aliyun.com/nexus/content/groups/public/</url>  
-        </mirror>  
+        </mirror>
         <mirror>  
             <id>net-cn</id>  
             <mirrorOf>central</mirrorOf>  
@@ -28,7 +28,7 @@
     <profiles>  
         <profile>
             <id>aliyun</id>
-            <repositories>  
+            <repositories>
                 <repository>  
                     <id>nexus</id>  
                     <name>local private nexus</name>  
@@ -55,9 +55,24 @@
                 </pluginRepository>  
             </pluginRepositories>
         </profile>
-    </profiles>  
-    <!-- -->  
+        <profile>
+            <id>jd sync tool</id>
+            <repositories>
+                <repository>
+                    <id>jitpack.io</id>
+                    <url>https://jitpack.io</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+        </profile>
+    </profiles>
     <activeProfiles>  
-        <activeProfile>nexus</activeProfile>  
+        <activeProfile>aliyun</activeProfile>
+        <activeProfile>jd sync tool</activeProfile>
     </activeProfiles>  
 </settings>
