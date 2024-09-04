@@ -4,8 +4,8 @@ import cn.hutool.json.JSON;
 import cn.hutool.json.JSONUtil;
 import com.leavis.lemon3.dto.KafkaMessageReqDTO;
 import com.leavis.lemon3.exception.BizException;
-import com.leavis.lemon3.rsp.Result;
-import com.leavis.lemon3.rsp.ResultCodeEnum;
+import com.leavis.lemon3.dto.GenericRspDTO;
+import com.leavis.lemon3.enums.ErrorCodeEnum;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -44,7 +44,7 @@ public class KafkaPushController {
     @PostMapping(value = "/message")
     @Operation(summary = "发送消息到固定的 topic内", description = "字符串，随便填写")
     @ApiResponse(responseCode = "200", description = "发送消息到 topic成功")
-    Result sendMsg(@Validated @RequestBody KafkaMessageReqDTO kafkaMessageReqDTO) {
+    GenericRspDTO sendMsg(@Validated @RequestBody KafkaMessageReqDTO kafkaMessageReqDTO) {
         JSON msgJson = JSONUtil.parseObj(kafkaMessageReqDTO);
         CompletableFuture<SendResult<String, Object>> future = kafkaTemplate.send(topic, UUID.randomUUID().toString(),
                 msgJson);
@@ -63,10 +63,10 @@ public class KafkaPushController {
         try {
             resultFuture.get();
         } catch (InterruptedException | ExecutionException e) {
-            BizException.throwException(ResultCodeEnum.FAILED, e);
+            BizException.throwException(ErrorCodeEnum.FAILED, e);
         }
         if (!sendResult.get()) {
-            BizException.throwException(ResultCodeEnum.FAILED);
+            BizException.throwException(ErrorCodeEnum.FAILED);
         }
 
 //        //执行成功回调
@@ -78,6 +78,6 @@ public class KafkaPushController {
 //            log.error("发送失败", JSONUtil.toJsonStr(kafkaMessageReqDTO), e);
 //            return null;
 //        });
-        return Result.successNobody();
+        return GenericRspDTO.successNobody();
     }
 }

@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.leavis.lemon3.bo.UserBO;
 import com.leavis.lemon3.dto.PageParamDTO;
 import com.leavis.lemon3.dto.UserInfoDTO;
-import com.leavis.lemon3.rsp.Result;
+import com.leavis.lemon3.dto.GenericRspDTO;
 import com.leavis.lemon3.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -36,17 +36,17 @@ public class UserController {
     @GetMapping(value = "/page")
     @Operation(summary = "获取用户列表", description = "获取用户列表,输入分页参数，返回总记录数和详细记录")
     @ApiResponse(responseCode = "200", description = "返回用户列表和总记录数")
-    public Result<List<UserInfoDTO>> getUserPage(PageParamDTO pageParamDTO) {
+    public GenericRspDTO<List<UserInfoDTO>> getUserPage(PageParamDTO pageParamDTO) {
         Page<UserBO> userBOPage = userService.getUserPage(pageParamDTO.getPage(),
                 pageParamDTO.getPageSize());
         if (CollectionUtils.isEmpty(userBOPage.getRecords())) {
-            return Result.successPage(new ArrayList<>(), userBOPage.getTotal());
+            return GenericRspDTO.successPage(new ArrayList<>(), userBOPage.getTotal());
         }
         List<UserInfoDTO> userInfoDTOList = userBOPage.getRecords().stream().map(e -> {
             UserInfoDTO userInfoDTO = new UserInfoDTO();
             BeanUtils.copyProperties(e, userInfoDTO);
             return userInfoDTO;
         }).collect(Collectors.toList());
-        return Result.successPage(userInfoDTOList, userBOPage.getTotal());
+        return GenericRspDTO.successPage(userInfoDTOList, userBOPage.getTotal());
     }
 }

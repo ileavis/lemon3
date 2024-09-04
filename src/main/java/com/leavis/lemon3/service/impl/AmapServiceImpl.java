@@ -6,7 +6,7 @@ import com.leavis.lemon3.client.config.AmapConfig;
 import com.leavis.lemon3.client.model.IpLocationRsp;
 import com.leavis.lemon3.client.model.WeatherForecastResponse;
 import com.leavis.lemon3.exception.BizException;
-import com.leavis.lemon3.rsp.ResultCodeEnum;
+import com.leavis.lemon3.enums.ErrorCodeEnum;
 import com.leavis.lemon3.service.AmapService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -37,7 +37,7 @@ public class AmapServiceImpl implements AmapService {
             return gson.toJson(weatherForecastResponse);
         } catch (Exception e) {
             log.error("Failed to get weather info for city code: {}", cityCode, e);
-            throw new BizException(ResultCodeEnum.FAILED, e);
+            throw new BizException(ErrorCodeEnum.FAILED, e);
         }
     }
 
@@ -50,7 +50,7 @@ public class AmapServiceImpl implements AmapService {
             return ipLocationRsp.getProvince() + "-" + ipLocationRsp.getCity();
         } catch (Exception e) {
             log.error("Failed to get ip location for ipv4: {}", ipv4, e);
-            throw new BizException(ResultCodeEnum.FAILED, e);
+            throw new BizException(ErrorCodeEnum.FAILED, e);
         }
     }
 }

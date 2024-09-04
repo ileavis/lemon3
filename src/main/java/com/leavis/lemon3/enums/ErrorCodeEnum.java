@@ -1,4 +1,4 @@
-package com.leavis.lemon3.rsp;
+package com.leavis.lemon3.enums;
 
 
 import com.leavis.lemon3.exception.BaseError;
@@ -8,7 +8,7 @@ import com.leavis.lemon3.exception.BaseError;
  * @Description: 错误码类demo，业务应该自己定义自己的错误吗
  * @Date: 2024/8/8 17:01
  */
-public enum ResultCodeEnum implements BaseError {
+public enum ErrorCodeEnum implements BaseError {
     // 错误码定义规则，前三位为系统模块，后 5 位为数字错误码
     SUCCESS("SYS00000", "交易成功"),
     FAILED("SYS00001", "交易失败"),
@@ -26,7 +26,7 @@ public enum ResultCodeEnum implements BaseError {
     private final String msg;
 
 
-    ResultCodeEnum(String code, String msg) {
+    ErrorCodeEnum(String code, String msg) {
         this.code = code;
         this.msg = msg;
     }
