@@ -27,6 +27,9 @@ public class PushMsgServiceImpl implements PushMsgService {
 
     @Override
     public void pushMsgToAll(String msg) {
+        if(NettyConfig.getChannelMap().isEmpty()) {
+            BizException.throwException("没有用户在线，消息发送失败");
+        }
         NettyConfig.getChannelGroup().writeAndFlush(new TextWebSocketFrame(msg));
     }
 }

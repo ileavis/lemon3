@@ -3,6 +3,7 @@ package com.leavis.lemon3.controller;
 import cn.hutool.json.JSON;
 import cn.hutool.json.JSONUtil;
 import com.leavis.lemon3.dto.KafkaMessageReqDTO;
+import com.leavis.lemon3.dto.Nobody;
 import com.leavis.lemon3.exception.BizException;
 import com.leavis.lemon3.dto.GenericRspDTO;
 import com.leavis.lemon3.enums.ErrorCodeEnum;
@@ -44,7 +45,7 @@ public class KafkaPushController {
     @PostMapping(value = "/message")
     @Operation(summary = "发送消息到固定的 topic内", description = "字符串，随便填写")
     @ApiResponse(responseCode = "200", description = "发送消息到 topic成功")
-    GenericRspDTO sendMsg(@Validated @RequestBody KafkaMessageReqDTO kafkaMessageReqDTO) {
+    GenericRspDTO<Nobody> sendMsg(@Validated @RequestBody KafkaMessageReqDTO kafkaMessageReqDTO) {
         JSON msgJson = JSONUtil.parseObj(kafkaMessageReqDTO);
         CompletableFuture<SendResult<String, Object>> future = kafkaTemplate.send(topic, UUID.randomUUID().toString(),
                 msgJson);

@@ -37,10 +37,11 @@ public class GenericRspDTO<T> implements BaseError {
         return genericRspDTO;
     }
 
-    public static GenericRspDTO successNobody() {
-        GenericRspDTO genericRspDTO = new GenericRspDTO<>();
+    public static GenericRspDTO<Nobody> successNobody() {
+        GenericRspDTO<Nobody> genericRspDTO = new GenericRspDTO<>();
         genericRspDTO.setCode(ErrorCodeEnum.SUCCESS.getCode());
         genericRspDTO.setMsg(ErrorCodeEnum.SUCCESS.getMsg());
+        genericRspDTO.setData(new Nobody());
         return genericRspDTO;
     }
 
