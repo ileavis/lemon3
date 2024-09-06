@@ -1,21 +1,27 @@
-# [lemon3-基于 springboot3的 demo工程]
+# lemon3-基于 Spring Boot 3 的微服务应用
 
-## 介绍
+## 项目简介
 
-这是一个基于 Spring Boot 3.3.2 的微服务应用，集成了多种技术和框架，旨在提供一个高性能、可扩展的服务平台。本项目主要技术栈包括：
+这是一个基于 Spring Boot 3.3.2 的高性能、可扩展的微服务应用。本项目集成了多种先进的技术和框架，旨在提供一个稳定且高效的服务平台。主要技术栈包括：
 
-- **Spring Boot 3.3.2**
-- **Springdoc** — 用于生成 RESTful API 文档。
-- **Druid** — 数据库连接池监控。
-- **Nacos** — 作为配置中心和注册中心。
-- **MyBatis-Plus** — 简化 MyBatis 的 CRUD 操作。
-- **Redis** — 用于缓存和会话管理。
-- **Kafka** — 消息队列。
-- **OpenFeign** — 声明式的 HTTP 客户端。
-- **Spring Actuator** — 提供健康检查和指标监控。
-- **AsyncTool** — 京东提供的异步工具库。
+- **Spring Boot 3.3.2** — 基础框架
+- **Springdoc** — 自动生成 RESTful API 文档
+- **Druid** — 数据库连接池监控
+- **Nacos** — 配置中心和注册中心
+- **MyBatis-Plus** — 简化 MyBatis 操作
+- **Redis** — 缓存和会话管理
+- **Kafka** — 消息队列
+- **OpenFeign** — 声明式 HTTP 客户端
+- **Spring Actuator** — 应用健康检查和监控
+- **AsyncTool** — 异步处理工具库
+- **Netty** — 高性能网络应用框架
+
+## 新增功能
+
+我们最近引入了 **Netty** 框架，并实现了一个简单的消息发送和接收的业务处理 demo。Netty 的高性能网络通信能力将为您的应用带来更快的响应速度和更高的吞吐量。
 
 ## 快速开始
+
 ### 环境准备
 
 - Java 17+
@@ -24,6 +30,6 @@
 - K8s (可选)
 
 ### 构建项目
-- 1、修改配置文件
-- 2、执行Makefile中指令可以实现快速部署，如 make all可以快速打出 docker镜像
 
+1. 修改配置文件以适应您的环境。
+2. 执行 `Makefile` 中的指令可以快速部署项目，例如 `make all` 可以构建 Docker 镜像。
