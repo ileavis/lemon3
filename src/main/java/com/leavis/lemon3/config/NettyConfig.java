@@ -1,61 +1,54 @@
 package com.leavis.lemon3.config;
 
-import io.netty.channel.Channel;
-import io.netty.channel.group.ChannelGroup;
-import io.netty.channel.group.DefaultChannelGroup;
-import io.netty.util.concurrent.GlobalEventExecutor;
-import java.util.concurrent.ConcurrentHashMap;
+import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * @Author: paynejlli
- * @Description: netty配置
- * @Date: 2024/9/3 18:04
+ * @Description: netty服务器配置
+ * @Date: 2024/9/4 17:48
  */
+@Configuration
+@Data
+@ConfigurationProperties(prefix = "lemon.netty")
+@RefreshScope
 public class NettyConfig {
 
     /**
-     * 定义全局单利channel组 管理所有channel
+     * 服务器端口
      */
-    private static volatile ChannelGroup channelGroup = null;
+    private Integer port;
 
     /**
-     * 存放请求ID与channel的对应关系
+     * 心跳超时时间,单位为秒
      */
-    private static volatile ConcurrentHashMap<String, Channel> channelMap = null;
+    private Long heartBeatTimeout;
 
-    /**
-     * 定义两把锁
-     */
-    private static final Object lock1 = new Object();
-    private static final Object lock2 = new Object();
+    private Ssl ssl;
 
+    @Data
+    public static class Ssl {
 
-    public static ChannelGroup getChannelGroup() {
-        if (null == channelGroup) {
-            synchronized (lock1) {
-                if (null == channelGroup) {
-                    channelGroup = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
-                }
-            }
-        }
-        return channelGroup;
-    }
+        /**
+         * 是否启用ssl
+         */
+        private Boolean enabled;
 
-    public static ConcurrentHashMap<String, Channel> getChannelMap() {
-        if (null == channelMap) {
-            synchronized (lock2) {
-                if (null == channelMap) {
-                    channelMap = new ConcurrentHashMap<>();
-                }
-            }
-        }
-        return channelMap;
-    }
+        /**
+         * ssl类型
+         */
+        private String type;
 
-    public static Channel getChannel(String userId) {
-        if (null == channelMap) {
-            return getChannelMap().get(userId);
-        }
-        return channelMap.get(userId);
+        /**
+         * 密钥库文件
+         */
+        private String keyStore;
+
+        /**
+         * 密钥库密码
+         */
+        private String keyStorePassword;
     }
 }

@@ -1,0 +1,1 @@
+keytool -genkey -v -keystore lemon3.jks -alias myapp -keyalg RSA -keysize 2048 -validity 3650

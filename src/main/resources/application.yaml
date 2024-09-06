@@ -140,3 +140,11 @@ lemon:
   kafka:
     consumer:
       topic: demo-topic
+  netty:
+    port: 8888
+    heart-beat-timeout: 60
+    ssl:
+      enabled: false  # 是否开启ssl，todo开启ssl目前还有个bug未解决
+      type: JKS
+      key-store: ./lemon3.jks
+      key-store-password: 123456
