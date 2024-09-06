@@ -2,7 +2,6 @@ package com.leavis.lemon3.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -13,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @Data
 @ConfigurationProperties(prefix = "lemon.netty")
-@RefreshScope
+//@RefreshScope 动态刷新时使用
 public class NettyConfig {
 
     /**

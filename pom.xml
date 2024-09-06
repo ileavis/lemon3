@@ -84,10 +84,11 @@
             <version>${druid.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-        </dependency>
+        <!-- 配置中心 -->
+        <!--        <dependency>-->
+        <!--            <groupId>com.alibaba.cloud</groupId>-->
+        <!--            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>-->
+        <!--        </dependency>-->
         <!-- 服务发现 -->
         <!--        <dependency>-->
         <!--            <groupId>com.alibaba.cloud</groupId>-->
