@@ -34,7 +34,7 @@ clean:
 
 # 目标：运行 Docker 镜像
 docker-run:
-	$(DOCKER_CMD) run -d -p 8080:8080 $(IMAGE_NAME)
+	$(DOCKER_CMD) run -d -p 8080:8080 -p 8888:8888 $(IMAGE_NAME)
 
 # 目标：在 Kubernetes 中运行 Pod
 kube-run:
@@ -43,6 +43,7 @@ kube-run:
 # 目标：在 Kubernetes 中暴露 Pod 为 NodePort 服务
 kube-expose:
 	$(KUBE_CMD) expose pod $(POD_NAME) --type=NodePort --port=8080 --name=$(SERVICE_NAME)
+	$(KUBE_CMD) expose pod $(POD_NAME) --type=NodePort --port=8888 --name=$(SERVICE_NAME)-8888
 
 kube-delete:
 	$(KUBE_CMD) delete pod $(POD_NAME)
