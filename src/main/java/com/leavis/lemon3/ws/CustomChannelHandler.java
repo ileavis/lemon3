@@ -26,7 +26,6 @@ import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.util.AttributeKey;
 import io.netty.util.CharsetUtil;
 import java.net.URISyntaxException;
-import java.util.Date;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -136,6 +135,8 @@ public class CustomChannelHandler extends SimpleChannelInboundHandler<Object> {
             IdleStateEvent idleStateEvent = (IdleStateEvent) evt;
             if (idleStateEvent.state() == IdleState.READER_IDLE) {
                 log.info("[释放不活跃通道] channelId {}, userId {}", ctx.channel().id(), this.getUserId(ctx));
+                TextWebSocketFrame tws = new TextWebSocketFrame(String.format("[释放不活跃通道] userId :[%s] 超时自动断开连接", this.getUserId(ctx)));
+                ctx.channel().writeAndFlush(tws);
                 ctx.channel().close();
             }
         } else {
