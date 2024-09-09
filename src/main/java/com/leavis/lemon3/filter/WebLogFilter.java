@@ -43,6 +43,14 @@ public class WebLogFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain)
             throws IOException, ServletException {
 
+        String uri = ((HttpServletRequest) servletRequest).getRequestURI();
+        // 放行条件：URI以 /druid、/swagger 或 /v3/api-docs 或 /actuator 开头
+        if (uri.startsWith("/druid") || uri.startsWith("/swagger") ||
+                uri.startsWith("/v3/api-docs") || uri.startsWith("/actuator")) {
+            chain.doFilter(servletRequest, servletResponse);
+            return;
+        }
+
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         // 如果有上层调用就用上层的ID
         String traceId = request.getHeader(TraceIdUtil.HTTP_HEADER_TRACE_ID);
