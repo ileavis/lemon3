@@ -132,12 +132,12 @@ public class CustomChannelHandler extends SimpleChannelInboundHandler<Object> {
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
         if (evt instanceof IdleStateEvent) {
-            IdleStateEvent idleStateEvent = (IdleStateEvent) evt;
-            if (idleStateEvent.state() == IdleState.READER_IDLE) {
-                log.info("[释放不活跃通道] channelId {}, userId {}", ctx.channel().id(), this.getUserId(ctx));
-                TextWebSocketFrame tws = new TextWebSocketFrame(String.format("[释放不活跃通道] userId :[%s] 超时自动断开连接", this.getUserId(ctx)));
-                ctx.channel().writeAndFlush(tws);
-                ctx.channel().close();
+            if (((IdleStateEvent) evt).state() == IdleState.READER_IDLE) {
+                String userId = this.getUserId(ctx);
+                log.info("[释放不活跃通道] channelId {}, userId {}", ctx.channel().id(), userId);
+                TextWebSocketFrame tws = new TextWebSocketFrame(
+                        String.format("[释放不活跃通道] userId :[%s] 超时自动断开连接", userId));
+                ctx.channel().writeAndFlush(tws).addListener(ChannelFutureListener.CLOSE);
             }
         } else {
             super.userEventTriggered(ctx, evt);
@@ -186,7 +186,7 @@ public class CustomChannelHandler extends SimpleChannelInboundHandler<Object> {
         ChannelHolder.getChannelMap().put(userId, ctx.channel());
         // 将用户ID作为自定义属性加入到channel中，方便随时channel中获取用户ID
         ctx.channel().attr(AttributeKey.valueOf("userId")).setIfAbsent(userId);
-        log.info("[连接建立成功] channelId {}, userId {}", ctx.channel().id(), this.getUserId(ctx));
+        log.info("[连接建立成功] channelId {}, userId {}", ctx.channel().id(), userId);
     }
 
     /**
@@ -229,26 +229,27 @@ public class CustomChannelHandler extends SimpleChannelInboundHandler<Object> {
      * @param frame WebSocketFrame 消息帧对象
      */
     private void handlerWebSocketFrame(ChannelHandlerContext ctx, WebSocketFrame frame) {
+        String userId = this.getUserId(ctx);
         // 关闭webSocket的指令
         if (frame instanceof CloseWebSocketFrame) {
-            log.info("[主动关闭] channelId {}, userId {}", ctx.channel().id(), this.getUserId(ctx));
+            log.info("[主动关闭] channelId {}, userId {}", ctx.channel().id(), userId);
             handshaker.close(ctx.channel(), (CloseWebSocketFrame) frame.retain());
             return;
         } else if (frame instanceof PingWebSocketFrame) {
             ctx.channel().write(new PongWebSocketFrame(frame.content().retain()));
             return;
         } else if (!(frame instanceof TextWebSocketFrame)) {
-            log.warn("[不支持的消息类型] channelId {}, userId {}", ctx.channel().id(), this.getUserId(ctx));
+            log.warn("[不支持的消息类型] channelId {}, userId {}", ctx.channel().id(), userId);
             throw new RuntimeException("【" + this.getClass().getName() + "】不支持的二进制消息");
         }
         // 获取文本消息
         String request = ((TextWebSocketFrame) frame).text();
         if (HEART_BEAT.equals(request)) {
-            log.debug("[心跳请求] channelId {}, userId {}, {}", ctx.channel().id(), this.getUserId(ctx), request);
+            log.debug("[心跳请求] channelId {}, userId {}, {}", ctx.channel().id(), userId, request);
             return;
         }
-        log.info("[收到消息] channelId{}, userId {} : {}", ctx.channel().id(), this.getUserId(ctx), request);
-        String rsp = wsBusinessService.handleUserMsg(this.getUserId(ctx), request);
+        log.info("[收到消息] channelId{}, userId {} : {}", ctx.channel().id(), userId, request);
+        String rsp = wsBusinessService.handleUserMsg(userId, request);
         TextWebSocketFrame tws = new TextWebSocketFrame(rsp);
         // 回复消息
         ctx.channel().writeAndFlush(tws);
